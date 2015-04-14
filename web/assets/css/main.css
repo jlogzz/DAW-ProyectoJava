@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 5, 2015, 9:24:18 PM
+    Author     : JLo
+*/
+
+.login-spinner{
+    width: 128px; 
+    display: block; 
+    margin: 0 auto;
+}
+
+/* label color */
+   .input-field label {
+     color: #fff;
+   }
+   .input-field input[type=search]{
+       border-bottom: none;
+       margin-bottom: 0px;
+       font-size: 24px;
+   }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color:    #fff;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color:    #fff;
+       opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color:    #fff;
+       opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+       color:    #fff;
+    }
+   /* label focus color */
+   .input-field input[type=search]:focus + label {
+     color: #fff;
+   }
+   /* label underline focus color */
+   .input-field input[type=search]:focus {
+     border-bottom: none;
+     box-shadow: none;
+   }
+   /* valid color */
+   .input-field input[type=search].valid {
+     border-bottom: none;
+     box-shadow: none;
+   }
+   /* invalid color */
+   .input-field input[type=search].invalid {
+     border-bottom: none;
+     box-shadow: none;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #fff;
+   }
