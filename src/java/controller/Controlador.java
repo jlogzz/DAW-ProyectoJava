@@ -70,12 +70,17 @@ public class Controlador extends HttpServlet {
                 DBhandler.deleteClass(id);
             }
             
-        }else if(model.equals("categorie")){
+        }else if(model.equals("category")){
             //CRUD
             if(action.equals("create")){
                 
             }else if(action.equals("read")){
                 
+                int cid = Integer.parseInt(request.getParameter("classId"));
+                Classes cl = DBhandler.getClass(cid);
+                
+                request.setAttribute("class", cl);
+                url = "/categories.jsp";
             }else if(action.equals("update")){
                 
             }else if(action.equals("delete")){

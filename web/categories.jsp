@@ -1,5 +1,6 @@
 <%@include file="./header.jsp" %>
 
+<%@page import="model.Categories"%>
 <%@page import="model.Classes"%>
 <%@page import="java.util.ArrayList"%>
         <%
@@ -9,35 +10,41 @@
                     response.sendRedirect(url);
             }
             
+            Classes cla = (Classes)request.getAttribute("class");
+            
         %>
         <div class="container">
             <div class="row" style="margin-top: 50px;">
                 <div class="row">
+                    <h1 class="center-align">Class: <%= cla.getName() %></h1>
+                </div>
+                <div class="row">
                     <button data-target="newClassModal" class="newClassModal-trigger col s12 m8 offset-m2 l6 offset-l3 red lighten-1 white-text waves-effect waves-light btn-large">
-                        <h5 class="center-align">NEW CLASS</h5>
+                        <h5 class="center-align">NEW CATEGORY</h5>
                     </button>
                 </div>
                 
                 <div class="row" id="classesCollection">
                     <%
 
-                        ArrayList classes = (ArrayList)request.getAttribute("classes");
+                        ArrayList categories = (ArrayList)request.getAttribute("categories");
 
-                        for (int i = 0; i < classes.size(); i++) {
-                            Classes cl = (Classes) classes.get(i);
+                        if(categories!=null)
+                        for (int i = 0; i < categories.size(); i++) {
+                            Categories cat = (Categories) categories.get(i);
                     %>
                     <div class="col s12 m6 l4">
                       <div class="card light-blue darken-3">
                         <div class="card-content white-text">
-                          <span class="card-title"><%= cl.getName() %></span>
-                          <p class="center-align"><%= cl.getDateCreated() %></p>
-                          <p class="center-align"><%= cl.getDateEdited() %></p>
-                          <p class="center-align">Edited By: <%= cl.getEditedBy() %></p>
+                          <span class="card-title"><%= cat.getName() %></span>
+                          <p class="center-align"><%= cat.getDateCreated() %></p>
+                          <p class="center-align"><%= cat.getDateEdited() %></p>
+                          <p class="center-align">Edited By: <%= cat.getEditedBy() %></p>
                         </div>
                         <div class="card-action" style="font-size: 24px;">
                           <a href="#">Clues</a>
-                          <a href='#' class="classUpdate" data-id="<%= cl.getId() %>" data-name="<%= cl.getName() %>"><i class="mdi-editor-mode-edit"></i></a>
-                          <a href='#' class="classDelete" data-id="<%= cl.getId() %>" data-name="<%= cl.getName() %>"><i class="mdi-action-delete"></i></a>
+                          <a href='#' class="classUpdate" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-editor-mode-edit"></i></a>
+                          <a href='#' class="classDelete" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-action-delete"></i></a>
                         </div>
                       </div>
                     </div>
