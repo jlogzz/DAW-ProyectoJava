@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Usuario;
 import model.Classes;
+import model.Categories;
 import data.DBhandler;
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -73,18 +74,31 @@ public class Controlador extends HttpServlet {
         }else if(model.equals("category")){
             //CRUD
             if(action.equals("create")){
-                
+                String name = request.getParameter("name");
+                Usuario usuario = (Usuario)session.getAttribute("usuario");
+                int by = usuario.getId();
+                int cid = Integer.parseInt(request.getParameter("cid"));
+                DBhandler.newCategory(name, by, cid);
             }else if(action.equals("read")){
                 
                 int cid = Integer.parseInt(request.getParameter("classId"));
+                ArrayList list = DBhandler.getCategories(cid);
                 Classes cl = DBhandler.getClass(cid);
                 
                 request.setAttribute("class", cl);
+                request.setAttribute("categories", list);
+                request.setAttribute("cid", cid);
+                
                 url = "/categories.jsp";
             }else if(action.equals("update")){
-                
+                int id = Integer.parseInt(request.getParameter("id"));
+                String name = request.getParameter("name");
+                Usuario usuario = (Usuario)session.getAttribute("usuario");
+                int by = usuario.getId();
+                DBhandler.updateCategory(id, name, by);
             }else if(action.equals("delete")){
-                
+                int id = Integer.parseInt(request.getParameter("id"));
+                DBhandler.deleteCategory(id);
             }
             
         }else if(model.equals("clue")){

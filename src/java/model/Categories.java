@@ -7,6 +7,7 @@ package model;
 
 import data.DBhandler;
 import model.Classes;
+import model.Usuario;
 
 /**
  *
@@ -74,8 +75,10 @@ public class Categories {
         this.dateEdited = dateEdited;
     }
 
-    public int getEditedBy() {
-        return editedBy;
+    public String getEditedBy() {
+        Usuario usuario = DBhandler.getUsuario(this.editedBy);
+        
+        return usuario.getUsername();
     }
 
     public void setEditedBy(int editedBy) {

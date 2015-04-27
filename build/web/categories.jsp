@@ -42,9 +42,9 @@
                           <p class="center-align">Edited By: <%= cat.getEditedBy() %></p>
                         </div>
                         <div class="card-action" style="font-size: 24px;">
-                          <a href="#">Clues</a>
-                          <a href='#' class="classUpdate" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-editor-mode-edit"></i></a>
-                          <a href='#' class="classDelete" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-action-delete"></i></a>
+                          <a href="./Controlador?model=clue&action=read&categoryId=<%= cat.getId() %>">Clues</a>
+                          <a href='#' class="classUpdate" data-cid="<%= cat.getClassId() %>" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-editor-mode-edit"></i></a>
+                          <a href='#' class="categoryDelete" data-cid="<%= cat.getClassId() %>" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-action-delete"></i></a>
                         </div>
                       </div>
                     </div>
@@ -56,16 +56,16 @@
         <!-- Modal Structure -->
         <div id="newClassModal" class="modal">
           <div class="modal-content">
-            <h4>New Class</h4>
+            <h4>New Category</h4>
             <div class="row">
                 <div class="input-field col s12 black-text">
-                  <input id="className" type="text" class="validate">
-                  <label for="className" class="black-text">Class Name</label>
+                  <input id="categoryName" type="text" class="validate">
+                  <label for="categoryName" class="black-text">Category Name</label>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button id="createClass" class=" modal-action modal-close waves-effect waves-green btn-large">Submit</button>
+              <button id="createCategory" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Submit</button>
           </div>
         </div>
         
@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button id="updateClass" class=" modal-action modal-close waves-effect waves-green btn-large">Update</button>
+            <button id="updateCategory" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Update</button>
           </div>
         </div>
 

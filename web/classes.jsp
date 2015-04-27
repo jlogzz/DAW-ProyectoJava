@@ -35,7 +35,7 @@
                           <p class="center-align">Edited By: <%= cl.getEditedBy() %></p>
                         </div>
                         <div class="card-action" style="font-size: 24px;">
-                          <a href="./Controlador?model=category&action=read&classId=<%= cl.getId() %>">Clues</a>
+                          <a href="./Controlador?model=category&action=read&classId=<%= cl.getId() %>">Categories</a>
                           <a href='#' class="classUpdate" data-id="<%= cl.getId() %>" data-name="<%= cl.getName() %>"><i class="mdi-editor-mode-edit"></i></a>
                           <a href='#' class="classDelete" data-id="<%= cl.getId() %>" data-name="<%= cl.getName() %>"><i class="mdi-action-delete"></i></a>
                         </div>

@@ -205,6 +205,29 @@ public class DBhandler {
     //**************************************//
     // Categories
     //**************************************//
+    
+    public static ArrayList getCategories(int cid){
+        ArrayList list = new ArrayList();
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM category WHERE classId = '"+cid+"' ORDER BY id DESC");
+            while (results.next()) {
+                int id = Integer.parseInt(results.getString(1));
+                String name = results.getString(2);
+                String dateCreated = results.getString(4);
+                String dateEdited = results.getString(5);
+                int editedBy = Integer.parseInt(results.getString(6));
+                Categories cat = new Categories(id, name, cid, dateCreated, dateEdited, editedBy);
+                list.add(cat);
+            }
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
     public static Categories getCategory(int cid){
         Categories cat = null;
         try {            
@@ -251,7 +274,7 @@ public class DBhandler {
     public static void updateCategory(int id, String name, int by){
         try {            
             Statement statement = connection.createStatement();
-            statement.executeUpdate("UPDATE class SET name='"+name+"', dateEdited='"+getFechaActual()+"', editedBy='"+by+"' WHERE id='"+id+"'");
+            statement.executeUpdate("UPDATE category SET name='"+name+"', dateEdited='"+getFechaActual()+"', editedBy='"+by+"' WHERE id='"+id+"'");
 
             statement.close();    
         } catch (SQLException ex) {

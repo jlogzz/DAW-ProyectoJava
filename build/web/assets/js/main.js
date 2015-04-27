@@ -101,4 +101,47 @@ $(document).ready(function(){
             window.location = "./Controlador?model=class&action=read";
         });
     });
+    
+    
+    $("#createCategory").click(function(){
+        var vcid = $(this).data("cid");
+        $.ajax({
+            method: "POST",
+            url: "./Controlador?model=category&action=create",
+            data: {name:$("#categoryName").val(), cid:vcid}
+            //dataType: "json"
+        }).done(function(){
+            window.location = "./Controlador?model=category&action=read&classId="+vcid;
+        });
+    });
+    
+    $("#updateCategory").click(function(){
+       var vname = $("#updateClassName").val();
+       var vid = $("#updateClassId").val();
+       var cid = $(this).data("cid");
+       
+       $.ajax({
+            method: "POST",
+            url: "./Controlador?model=category&action=update",
+            data: {id: vid, name: vname}
+            //dataType: "json"
+        }).done(function(){
+            window.location = "./Controlador?model=category&action=read&classId="+cid;
+        });
+    });
+    
+    $(".categoryDelete").click(function(){
+        if(confirm("Are you sure you want to delete " + $(this).data("name") + "?")){
+            var cid = $("#updateCategory").data("cid");
+            $.ajax({
+                method: "POST",
+                url: "./Controlador?model=category&action=delete",
+                data: {id: $(this).data("id")}
+                //dataType: "json"
+            }).done(function(){
+                window.location = "./Controlador?model=category&action=read&classId="+cid;
+            });
+        }
+    });
+    
 });
