@@ -236,9 +236,9 @@ public class DBhandler {
             while (results.next()) {
                 int id = Integer.parseInt(results.getString(1));
                 String name = results.getString(2);
-                String dateCreated = results.getString(3);
-                String dateEdited = results.getString(4);
-                int editedBy = Integer.parseInt(results.getString(5));
+                String dateCreated = results.getString(4);
+                String dateEdited = results.getString(5);
+                int editedBy = Integer.parseInt(results.getString(6));
                 cat = new Categories(id, name, cid, dateCreated, dateEdited, editedBy);
             }
             statement.close();

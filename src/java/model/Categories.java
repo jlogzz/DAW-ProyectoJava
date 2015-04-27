@@ -77,7 +77,6 @@ public class Categories {
 
     public String getEditedBy() {
         Usuario usuario = DBhandler.getUsuario(this.editedBy);
-        
         return usuario.getUsername();
     }
 

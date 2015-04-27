@@ -5,6 +5,9 @@
  */
 package model;
 
+import model.Usuario;
+import data.DBhandler;
+
 /**
  *
  * @author JLo
@@ -79,8 +82,10 @@ public class Clues {
         this.dateEdited = dateEdited;
     }
 
-    public int getEditedBy() {
-        return editedBy;
+    public String getEditedBy() {
+        Usuario usuario = DBhandler.getUsuario(this.editedBy);
+        
+        return usuario.getUsername();
     }
 
     public void setEditedBy(int editedBy) {

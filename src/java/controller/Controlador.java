@@ -106,7 +106,15 @@ public class Controlador extends HttpServlet {
             if(action.equals("create")){
                 
             }else if(action.equals("read")){
+                int cid = Integer.parseInt(request.getParameter("categoryId"));
+                ArrayList list = DBhandler.getCategories(cid);
+                Categories ct = DBhandler.getCategory(cid);
                 
+                request.setAttribute("category", ct);
+                request.setAttribute("categories", list);
+                request.setAttribute("cid", cid);
+                
+                url = "/clues.jsp";
             }else if(action.equals("update")){
                 
             }else if(action.equals("delete")){
