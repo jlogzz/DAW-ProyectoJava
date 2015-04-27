@@ -206,30 +206,30 @@ public class DBhandler {
     // Categories
     //**************************************//
     public static Categories getCategory(int cid){
-        Categories cl = null;
+        Categories cat = null;
         try {            
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT * FROM class WHERE id = '"+cid+"'");
+            ResultSet results = statement.executeQuery("SELECT * FROM category WHERE id = '"+cid+"'");
             while (results.next()) {
                 int id = Integer.parseInt(results.getString(1));
                 String name = results.getString(2);
                 String dateCreated = results.getString(3);
                 String dateEdited = results.getString(4);
                 int editedBy = Integer.parseInt(results.getString(5));
-                cl = new Classes(id, name, dateCreated, dateEdited, editedBy);
+                cat = new Categories(id, name, cid, dateCreated, dateEdited, editedBy);
             }
             statement.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return cl;
+        return cat;
     }
     
-    public static void newCategory(String name, int by){
+    public static void newCategory(String name, int by, int cid){
         try {            
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT into class (name, dateCreated, dateEdited, editedBy) VALUES('"+name+"', '"+getFechaActual()+"', '"+getFechaActual()+"', '"+by+"')");
+            statement.executeUpdate("INSERT into category (name, classId, dateCreated, dateEdited, editedBy) VALUES('"+name+"', '"+cid+"', '"+getFechaActual()+"', '"+getFechaActual()+"', '"+by+"')");
 
             statement.close();    
         } catch (SQLException ex) {
@@ -240,7 +240,7 @@ public class DBhandler {
     public static void deleteCategory(int id){
         try {            
             Statement statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM class WHERE id='"+id+"'");
+            statement.executeUpdate("DELETE FROM category WHERE id='"+id+"'");
 
             statement.close();    
         } catch (SQLException ex) {
@@ -258,6 +258,9 @@ public class DBhandler {
             Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
    
     private static String getFechaActual() {
         Date ahora = new Date();
