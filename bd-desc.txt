@@ -1,0 +1,25 @@
+Instancia
+	id
+	classId
+	dateCreated;
+    	dateEdited;
+    	editedBy;
+	
+
+CategoriasInstancia
+	id
+	InstanciaId
+	CategoryId
+	clue100
+	clue200
+	clue300
+	clue400
+	clue500
+
+
+EquiposInstancia
+	id
+	instanciaId
+	Equipo#
+	matricula
+	points
