@@ -104,21 +104,32 @@ public class Controlador extends HttpServlet {
         }else if(model.equals("clue")){
             //CRUD
             if(action.equals("create")){
-                
+                String text = request.getParameter("text");
+                int points = Integer.parseInt(request.getParameter("points"));
+                Usuario usuario = (Usuario)session.getAttribute("usuario");
+                int by = usuario.getId();
+                int cid = Integer.parseInt(request.getParameter("cid"));
+                DBhandler.newClue(text, points, by, cid);
             }else if(action.equals("read")){
                 int cid = Integer.parseInt(request.getParameter("categoryId"));
-                ArrayList list = DBhandler.getCategories(cid);
+                ArrayList list = DBhandler.getClues(cid);
                 Categories ct = DBhandler.getCategory(cid);
                 
                 request.setAttribute("category", ct);
-                request.setAttribute("categories", list);
+                request.setAttribute("clues", list);
                 request.setAttribute("cid", cid);
                 
                 url = "/clues.jsp";
             }else if(action.equals("update")){
-                
+                int id = Integer.parseInt(request.getParameter("id"));
+                String text = request.getParameter("text");
+                int points = Integer.parseInt(request.getParameter("points"));
+                Usuario usuario = (Usuario)session.getAttribute("usuario");
+                int by = usuario.getId();
+                DBhandler.updateClue(id, text, points, by);
             }else if(action.equals("delete")){
-                
+                int id = Integer.parseInt(request.getParameter("id"));
+                DBhandler.deleteClue(id);
             }
             
         }else if(model.equals("instance")){

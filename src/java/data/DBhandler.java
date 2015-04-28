@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import model.Usuario;
 import model.Classes;
 import model.Categories;
+import model.Clues;
 
 /**
  *
@@ -283,7 +284,89 @@ public class DBhandler {
     }
     
     
+    //**************************************//
+    // Categories
+    //**************************************//
     
+    public static ArrayList getClues(int cid){
+        ArrayList list = new ArrayList();
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM clue WHERE categoryId = '"+cid+"' ORDER BY id DESC");
+            while (results.next()) {
+                int id = Integer.parseInt(results.getString(1));
+                int catId = Integer.parseInt(results.getString(2));
+                String text = results.getString(3);
+                int points = Integer.parseInt(results.getString(4));
+                String dateCreated = results.getString(5);
+                String dateEdited = results.getString(6);
+                int editedBy = Integer.parseInt(results.getString(7));
+                Clues cl = new Clues(id, catId, text, points, dateCreated, dateEdited, editedBy);
+                list.add(cl);
+            }
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public static Clues getClue(int cid){
+        Clues cl = null;
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM clue WHERE id = '"+cid+"'");
+            while (results.next()) {
+                int id = Integer.parseInt(results.getString(1));
+                int catId = Integer.parseInt(results.getString(2));
+                String text = results.getString(3);
+                int points = Integer.parseInt(results.getString(4));
+                String dateCreated = results.getString(5);
+                String dateEdited = results.getString(6);
+                int editedBy = Integer.parseInt(results.getString(7));
+                cl = new Clues(id, catId, text, points, dateCreated, dateEdited, editedBy);
+            }
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cl;
+    }
+    
+    public static void newClue(String text, int points, int by, int cid){
+        try {            
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT into clue (categoryId, text, points, dateCreated, dateEdited, editedBy) VALUES('"+cid+"', '"+text+"', '"+points+"', '"+getFechaActual()+"', '"+getFechaActual()+"', '"+by+"')");
+
+            statement.close();    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void deleteClue(int id){
+        try {            
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM clue WHERE id='"+id+"'");
+
+            statement.close();    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void updateClue(int id, String text, int points, int by){
+        try {            
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE clue SET text='"+text+"', points='"+points+"', dateEdited='"+getFechaActual()+"', editedBy='"+by+"' WHERE id='"+id+"'");
+
+            statement.close();    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
    
     private static String getFechaActual() {
         Date ahora = new Date();

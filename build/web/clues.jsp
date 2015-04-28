@@ -2,6 +2,7 @@
 
 <%@page import="model.Categories"%>
 <%@page import="model.Classes"%>
+<%@page import="model.Clues"%>
 <%@page import="java.util.ArrayList"%>
         <%
             //Si ya inicio sesion mandalo a index
@@ -27,24 +28,24 @@
                 <div class="row" id="classesCollection">
                     <%
 
-                        ArrayList categories = (ArrayList)request.getAttribute("categories");
+                        ArrayList clues = (ArrayList)request.getAttribute("clues");
 
-                        if(categories!=null)
-                        for (int i = 0; i < categories.size(); i++) {
-                            Categories cat = (Categories) categories.get(i);
+                        if(clues!=null)
+                        for (int i = 0; i < clues.size(); i++) {
+                            Clues cl = (Clues) clues.get(i);
                     %>
                     <div class="col s12 m6 l4">
                       <div class="card light-blue darken-3">
                         <div class="card-content white-text">
-                          <span class="card-title"><%= cat.getName() %></span>
-                          <p class="center-align"><%= cat.getDateCreated() %></p>
-                          <p class="center-align"><%= cat.getDateEdited() %></p>
-                          <p class="center-align">Edited By: <%= cat.getEditedBy() %></p>
+                          <span class="card-title"><%= cl.getText() %></span>
+                          <p class="center-align">Points: <%= cl.getPoints() %></p>
+                          <p class="center-align"><%= cl.getDateCreated() %></p>
+                          <p class="center-align"><%= cl.getDateEdited() %></p>
+                          <p class="center-align">Edited By: <%= cl.getEditedBy() %></p>
                         </div>
                         <div class="card-action" style="font-size: 24px;">
-                          <a href="./Controlador?model=clue&action=read&categoryId=<%= cat.getId() %>">Clues</a>
-                          <a href='#' class="classUpdate" data-cid="<%= cat.getClassId() %>" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-editor-mode-edit"></i></a>
-                          <a href='#' class="categoryDelete" data-cid="<%= cat.getClassId() %>" data-id="<%= cat.getId() %>" data-name="<%= cat.getName() %>"><i class="mdi-action-delete"></i></a>
+                          <a href='#' class="clueUpdate" data-cid="<%= cl.getCategoryId() %>" data-id="<%= cl.getId() %>" data-text="<%= cl.getText() %>"  data-points="<%= cl.getPoints() %>"><i class="mdi-editor-mode-edit"></i></a>
+                          <a href='#' class="clueDelete" data-cid="<%= cl.getCategoryId() %>" data-id="<%= cl.getId() %>" data-text="<%= cl.getText() %>"><i class="mdi-action-delete"></i></a>
                         </div>
                       </div>
                     </div>
@@ -54,35 +55,57 @@
         </div>
         
         <!-- Modal Structure -->
-        <div id="newClassModal" class="modal">
+        <div id="newClueModal" class="modal" style="height: 550px;">
           <div class="modal-content">
-            <h4>New Category</h4>
+            <h4>New Clue</h4>
             <div class="row">
                 <div class="input-field col s12 black-text">
-                  <input id="categoryName" type="text" class="validate">
-                  <label for="categoryName" class="black-text">Category Name</label>
+                  <input id="clueText" type="text" class="validate">
+                  <label for="clueText" class="black-text">Clue Text</label>
+                </div>
+                <div class="input-field col s12 black-text">
+                    <select id="cluePoints">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                    </select>
+                    <label for="cluePoints" class="black-text">Points</label>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-              <button id="createCategory" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Submit</button>
+              <button id="createClue" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Submit</button>
           </div>
         </div>
         
         <!-- Modal Structure -->
-        <div id="updateClassModal" class="modal">
+        <div id="updateClueModal" class="modal" style="height: 550px;">
           <div class="modal-content">
-            <h4>Update Class</h4>
+            <h4>Update Clue</h4>
             <div class="row">
                 <div class="input-field col s12 black-text">
-                    <input type="hidden" id="updateClassId">
-                    <input id="updateClassName" type="text" class="validate">
-                    <label for="updateClassName" id="updateClassLabel" class="black-text">Class Name</label>
+                  <input type="hidden" id="updateClueId" >
+                  <input id="updateClueText" type="text" class="validate">
+                  <label for="updateClueText" class="black-text">Clue Text</label>
+                </div>
+                <div class="input-field col s12 black-text point-select">
+                    <select id="updateCluePoints">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option id="p100" value="100">100</option>
+                        <option id="p200" value="200">200</option>
+                        <option id="p300" value="300">300</option>
+                        <option id="p400" value="400">400</option>
+                        <option id="p500" value="500">500</option>
+                    </select>
+                    <label for="updateCluePoints" class="black-text">Points</label>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button id="updateCategory" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Update</button>
+            <button id="updatesClue" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Update</button>
           </div>
         </div>
 

@@ -54,6 +54,9 @@ $(document).ready(function(){
     //
     //**********************************************************
     
+    
+    $('select').material_select();
+    
     $('.newClassModal-trigger').leanModal();
     
     $("#createClass").click(function(){
@@ -142,6 +145,62 @@ $(document).ready(function(){
                 window.location = "./Controlador?model=category&action=read&classId="+cid;
             });
         }
+    });
+    
+    $("#createClue").click(function(){
+        var vcid = $(this).data("cid");
+        var vtext = $("#clueText").val();
+        var vpoints = $("#cluePoints").val();
+        $.ajax({
+            method: "POST",
+            url: "./Controlador?model=clue&action=create",
+            data: {text:vtext, points:vpoints, cid:vcid}
+            //dataType: "json"
+        }).done(function(){
+            window.location = "./Controlador?model=clue&action=read&categoryId="+vcid;
+        });
+    });
+    
+    $(".clueDelete").click(function(){
+        if(confirm("Are you sure you want to delete " + $(this).data("text") + "?")){
+            var vcid = $(this).data("cid");
+            $.ajax({
+                method: "POST",
+                url: "./Controlador?model=clue&action=delete",
+                data: {id: $(this).data("id")}
+                //dataType: "json"
+            }).done(function(){
+                window.location = "./Controlador?model=clue&action=read&categoryId="+vcid;
+            });
+        }
+    });
+    
+    $("#updatesClue").click(function(){
+       var vtext = $("#updateClueText").val();
+       var vpoints = $(this).parent().parent().children(".modal-content").children(".row").children(".point-select").children(".select-wrapper").children("input").val();
+       var vid = $("#updateClueId").val();
+       
+//       alert(vtext+"-"+vpoints+"-"+vid);
+       var cid = $(this).data("cid");
+       
+       $.ajax({
+            method: "POST",
+            url: "./Controlador?model=clue&action=update",
+            data: {id: vid, text: vtext, points:vpoints}
+            //dataType: "json"
+        }).done(function(){
+            window.location = "./Controlador?model=clue&action=read&categoryId="+cid;
+        });
+    });
+    
+    $(".clueUpdate").click(function(){
+        $("#updateClueText").val($(this).data("text"));
+        var points = $(this).data("points");
+        $(".select-dropdown").val(points);
+        var id = $(this).data("id");
+        $("#updateClueId").val(id);
+        $("#updateClueLabel").addClass("active");
+        $("#updateClueModal").openModal();
     });
     
 });
