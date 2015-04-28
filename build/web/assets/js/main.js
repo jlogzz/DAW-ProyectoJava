@@ -272,7 +272,7 @@ $(document).ready(function(){
                 }
             //dataType: "json"
             }).done(function(){
-                window.location = "./Controlador?model=choices&action=read";
+                window.location = "./Controlador?model=play&action=play";
             });
         }
     });

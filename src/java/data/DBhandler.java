@@ -375,6 +375,17 @@ public class DBhandler {
     // Instances
     //**************************************//
     
+    public static void setPlayable(int p, int by, int id){
+        try {            
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE instancia SET step1='"+p+"', dateEdited='"+getFechaActual()+"', editedBy='"+by+"' WHERE id='"+id+"'");
+
+            statement.close();    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static ArrayList getInstances(){
         ArrayList list = new ArrayList();
         try {            

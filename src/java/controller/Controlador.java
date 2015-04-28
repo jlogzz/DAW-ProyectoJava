@@ -182,6 +182,9 @@ public class Controlador extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 int cat1, cat2, cat3, cat4;
                 
+                Usuario usuario = (Usuario)session.getAttribute("usuario");
+                int by = usuario.getId();
+                
                 int cl11=0, cl21=0, cl31=0, cl41=0;
                 int cl12=0, cl22=0, cl32=0, cl42=0;
                 int cl13=0, cl23=0, cl33=0, cl43=0;
@@ -275,6 +278,8 @@ public class Controlador extends HttpServlet {
                     DBhandler.newInstanceTeam(s7, 0, 2, id);
                 if(!s8.equals(""))
                     DBhandler.newInstanceTeam(s8, 0, 2, id);
+                
+                DBhandler.setPlayable(1, by, id);
                 
             }else if(action.equals("step2")){
                 
