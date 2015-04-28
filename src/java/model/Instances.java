@@ -5,7 +5,9 @@
  */
 package model;
 
+import data.DBhandler;
 import java.util.ArrayList;
+import model.Classes;
 
 /**
  *
@@ -18,6 +20,7 @@ public class Instances {
     String dateCreated;
     String dateEdited;
     int editedBy;
+    int step1;
     
     ArrayList categories;
     ArrayList teams;
@@ -30,6 +33,7 @@ public class Instances {
         this.editedBy = editedBy;
         this.categories = categories;
         this.teams = teams;
+        step1 = 0;
     }
 
     public int getId() {
@@ -39,9 +43,13 @@ public class Instances {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public int getClassId(){
+        return this.classId;
+    }
 
-    public int getClassId() {
-        return classId;
+    public String getClassName() {
+        return DBhandler.getClass(this.classId).getName();
     }
 
     public void setClassId(int classId) {
@@ -86,6 +94,14 @@ public class Instances {
 
     public void setTeams(ArrayList teams) {
         this.teams = teams;
+    }
+
+    public int getStep1() {
+        return step1;
+    }
+
+    public void setStep1(int step1) {
+        this.step1 = step1;
     }
     
     

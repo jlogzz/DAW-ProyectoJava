@@ -203,4 +203,119 @@ $(document).ready(function(){
         $("#updateClueModal").openModal();
     });
     
+    $("#createInstance").click(function(){
+        var selected = $("select").val();
+        
+        $.ajax({
+            method: "POST",
+            url: "./Controlador?model=instance&action=create",
+            data: {classId:selected}
+            //dataType: "json"
+        }).done(function(){
+            window.location = "./Controlador?model=instance&action=read";
+        });
+    });
+    
+    $("#next").click(function(){
+        var iid = $("#instance").val();
+        var cat1 = $("#cat1").val();
+        var cat2 = $("#cat2").val();
+        var cat3 = $("#cat3").val();
+        var cat4 = $("#cat4").val();
+        
+        var cl11 = $("#cl11").val();
+        var cl12 = $("#cl12").val();
+        var cl13 = $("#cl13").val();
+        var cl14 = $("#cl14").val();
+        var cl15 = $("#cl15").val();
+        
+        var cl21 = $("#cl21").val();
+        var cl22 = $("#cl22").val();
+        var cl23 = $("#cl23").val();
+        var cl24 = $("#cl24").val();
+        var cl25 = $("#cl25").val();
+        
+        var cl31 = $("#cl31").val();
+        var cl32 = $("#cl32").val();
+        var cl33 = $("#cl33").val();
+        var cl34 = $("#cl34").val();
+        var cl35 = $("#cl35").val();
+        
+        var cl41 = $("#cl41").val();
+        var cl42 = $("#cl42").val();
+        var cl43 = $("#cl43").val();
+        var cl44 = $("#cl44").val();
+        var cl45 = $("#cl45").val();
+        
+        var studs = [];
+        
+        for(var i=1; i<=8; i++)
+            studs[i] = $("#stud"+i).val();
+        
+        if(cat1===""||cat2===""||cat3===""||cat4===""){
+            alert("Please select all categories");
+        }else if(cat1===cat2||cat1===cat3||cat1===cat4||cat2===cat3||cat2===cat4||cat3===cat4){
+            alert("Categories can't be repeated");
+        }else if(studs[1]===""||studs[5]===""){
+            alert("You must select at least 2 students to play");
+        }else{
+            $.ajax({
+            method: "POST",
+            url: "./Controlador?model=play&action=step1",
+            data: {id:iid,vcat1:cat1, vcat2:cat2, vcat3:cat3, vcat4:cat4, 
+                stud1: studs[1], stud2: studs[2], stud3: studs[3], stud4: studs[4], stud5: studs[5], stud6: studs[6], stud7: studs[7], stud8: studs[8],
+                c11:cl11, c21:cl21, c31:cl31, c41:cl41,
+                c12:cl12, c22:cl22, c32:cl32, c42:cl42,
+                c13:cl13, c23:cl23, c33:cl33, c43:cl43,
+                c14:cl14, c24:cl24, c34:cl34, c44:cl44,
+                c15:cl15, c25:cl25, c35:cl35, c45:cl45
+                }
+            //dataType: "json"
+            }).done(function(){
+                window.location = "./Controlador?model=choices&action=read";
+            });
+        }
+    });
+    
+    for(var i=1; i<=4; i++){
+        for(var j=1; j<=5; j++)
+            $("#cl"+i+j).hide();
+    }
+    
+    
+    $(".cat-select").on("change",function(){
+       var num = $(this).data("num");
+       var cat = $(this).val();
+       $("#cl"+num+"1").show().children(".clues").each(function(){
+           $(this).hide();
+           if($(this).data("cat")==cat){
+               $(this).show();
+           }
+       });
+       $("#cl"+num+"2").show().children(".clues").each(function(){
+           $(this).hide();
+           if($(this).data("cat")==cat){
+               $(this).show();
+           }
+       });
+       $("#cl"+num+"3").show().children(".clues").each(function(){
+           $(this).hide();
+           if($(this).data("cat")==cat){
+               $(this).show();
+           }
+       });
+       $("#cl"+num+"4").show().children(".clues").each(function(){
+           $(this).hide();
+           if($(this).data("cat")==cat){
+               $(this).show();
+           }
+       });
+       $("#cl"+num+"5").show().children(".clues").each(function(){
+           $(this).hide();
+           if($(this).data("cat")==cat){
+               $(this).show();
+           }
+       });
+    });
+    
 });

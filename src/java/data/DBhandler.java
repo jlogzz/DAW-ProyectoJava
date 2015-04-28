@@ -401,7 +401,7 @@ public class DBhandler {
         Instances in = null;
         try {            
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT * FROM clue WHERE id = '"+vid+"'");
+            ResultSet results = statement.executeQuery("SELECT * FROM instancia WHERE id = '"+vid+"'");
             while (results.next()) {
                 int id = Integer.parseInt(results.getString(1));
                 int classId = Integer.parseInt(results.getString(2));
@@ -546,7 +546,7 @@ public class DBhandler {
     public static void newInstanceTeam(String matricula, int points, int equipo, int iid){
         try {            
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT into equiposinstancia (isntanciaId, equipo, matricula, points) VALUES('"+iid+"', '"+equipo+"', '"+matricula+"', '"+points+"')");
+            statement.executeUpdate("INSERT into equiposinstancia (instanciaId, equipo, matricula, points) VALUES('"+iid+"', '"+equipo+"', '"+matricula+"', '"+points+"')");
 
             statement.close();
         } catch (SQLException ex) {

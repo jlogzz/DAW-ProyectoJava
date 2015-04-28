@@ -6,8 +6,10 @@
 package model;
 
 import data.DBhandler;
+import java.util.ArrayList;
 import model.Classes;
 import model.Usuario;
+import model.Clues;
 
 /**
  *
@@ -33,6 +35,12 @@ public class Categories {
     
     public Classes getParent(){
         return DBhandler.getClass(classId);
+    }
+    
+    public ArrayList getClues(){
+        ArrayList list = DBhandler.getClues(id);
+        
+        return list;
     }
     
     public int getId() {

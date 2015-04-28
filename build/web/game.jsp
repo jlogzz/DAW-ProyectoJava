@@ -15,13 +15,13 @@
         %>
         <div class="container">
             <div class="row" style="margin-top: 50px;">
-<!--                <div class="row">
+                <div class="row">
                     <div class="col s12 m12 l12">
                         <div class="card-panel red lighten-1 input-field white-text">
                             <input id="search" placeholder="Search..." type="search" required> 
                         </div>
                     </div>
-                </div>-->
+                </div>
                 
                 <div class="row">
                     <%
@@ -35,11 +35,11 @@
                     <div class="col s12 m6 l4">
                       <div class="card light-blue darken-3">
                         <div class="card-content white-text">
-                          <span class="card-title"><%= ins.getClassName() %></span>
+                          <span class="card-title"><%= ins.getClassId() %></span>
                           <p class="center-align"><%= ins.getDateCreated() %></p>
                         </div>
                         <div class="card-action" style="font-size: 24px;">
-                          <a href="./Controlador?model=play&action=read&instance=<%= ins.getId() %>">PLAY</a>
+                          <a href="#">PLAY</a>
                           <a href='#'><i class="mdi-editor-mode-edit"></i></a>
                           <a href='#'><i class="mdi-action-delete"></i></a>
                         </div>
@@ -75,7 +75,7 @@
             <h4>New Instance</h4>
             <div class="row">
                 <div class="input-field col s12">
-                    <select class="browser-default">
+                    <select>
                       <option value="" disabled selected>Choose your option</option>
                       <%
 
@@ -88,12 +88,12 @@
                       <option value="<%= cl.getId() %>"><%= cl.getName() %></option>
                       <% } %>
                     </select>
-                    
+                    <label>Select Class</label>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-              <button id="createInstance" class=" modal-action modal-close waves-effect waves-green btn-large">Submit</button>
+              <button id="createCategory" data-cid="<%= request.getAttribute("cid") %>" class=" modal-action modal-close waves-effect waves-green btn-large">Submit</button>
           </div>
         </div>
 
