@@ -25,7 +25,7 @@ public class Instances {
     ArrayList categories;
     ArrayList teams;
 
-    public Instances(int id, int classId, String dateCreated, String dateEdited, int editedBy, ArrayList categories, ArrayList teams) {
+    public Instances(int id, int classId, String dateCreated, String dateEdited, int editedBy, ArrayList categories, ArrayList teams, int step1) {
         this.id = id;
         this.classId = classId;
         this.dateCreated = dateCreated;
@@ -33,7 +33,7 @@ public class Instances {
         this.editedBy = editedBy;
         this.categories = categories;
         this.teams = teams;
-        step1 = 0;
+        this.step1 = step1;
     }
 
     public int getId() {

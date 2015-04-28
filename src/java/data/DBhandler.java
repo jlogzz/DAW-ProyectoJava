@@ -397,7 +397,8 @@ public class DBhandler {
                 String dateCreated = results.getString(3);
                 String dateEdited = results.getString(4);
                 int editedBy = Integer.parseInt(results.getString(5));
-                Instances in = new Instances(id, classId, dateCreated, dateEdited, editedBy, getInstanceCategories(id), getInstanceTeams(id));
+                int step1 = Integer.parseInt(results.getString(6));
+                Instances in = new Instances(id, classId, dateCreated, dateEdited, editedBy, getInstanceCategories(id), getInstanceTeams(id), step1);
                 list.add(in);
             }
             statement.close();
@@ -419,7 +420,8 @@ public class DBhandler {
                 String dateCreated = results.getString(3);
                 String dateEdited = results.getString(4);
                 int editedBy = Integer.parseInt(results.getString(5));
-                in = new Instances(id, classId, dateCreated, dateEdited, editedBy, getInstanceCategories(id), getInstanceTeams(id));
+                int step1 = Integer.parseInt(results.getString(6));
+                in = new Instances(id, classId, dateCreated, dateEdited, editedBy, getInstanceCategories(id), getInstanceTeams(id), step1);
             }
             statement.close();
             
@@ -432,7 +434,7 @@ public class DBhandler {
     public static void newInstance(int by, int cid){
         try {            
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT into instancia (classId, dateCreated, dateEdited, editedBy) VALUES('"+cid+"', '"+getFechaActual()+"', '"+getFechaActual()+"', '"+by+"')");
+            statement.executeUpdate("INSERT into instancia (classId, dateCreated, dateEdited, editedBy, step1) VALUES('"+cid+"', '"+getFechaActual()+"', '"+getFechaActual()+"', '"+by+"', '0')");
 
             statement.close();    
         } catch (SQLException ex) {

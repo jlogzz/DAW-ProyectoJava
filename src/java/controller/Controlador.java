@@ -281,13 +281,13 @@ public class Controlador extends HttpServlet {
                 
                 DBhandler.setPlayable(1, by, id);
                 
-            }else if(action.equals("step2")){
-                
+            }else if(action.equals("play")){
+                url = "/game.jsp";
             }
             
         }
         
-        if(action.equals("read")){
+        if(action.equals("read")||action.equals("play")){
             ServletContext sc=this.getServletContext();
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
             dispatcher.forward(request, response);
