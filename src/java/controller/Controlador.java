@@ -177,7 +177,10 @@ public class Controlador extends HttpServlet {
                 if(cat!=null)
                 request.setAttribute("categories", cat);
                 request.setAttribute("instance", ins.getId());
-                url = "/play.jsp";
+                if(ins.getStep1()==0)
+                    url = "/play.jsp";
+                else
+                    url = "/game.jsp";
             }else if(action.equals("step1")){
                 int id = Integer.parseInt(request.getParameter("id"));
                 int cat1, cat2, cat3, cat4;

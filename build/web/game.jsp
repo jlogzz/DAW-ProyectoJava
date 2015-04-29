@@ -14,58 +14,299 @@
             }
         %>
         <div class="container">
-            <div class="row" style="margin-top: 50px;">
-                <div class="row">
-                    <div class="col s12 m12 l12">
-                        <div class="card-panel red lighten-1 input-field white-text">
-                            <input id="search" placeholder="Search..." type="search" required> 
+            <div class="row" style="margin-top: 10px;"> 
+                <div class="row" style="position: fixed; z-index: 3000; width: 70%;">
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-content">
+                                <h5 class="activator yellow-text text-darken-1 center-align">Categoria</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-content">
+                                <h5 class="activator yellow-text text-darken-1 center-align">Categoria</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-content">
+                                <h5 class="activator yellow-text text-darken-1 center-align">Categoria</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-content">
+                                <h5 class="activator yellow-text text-darken-1 center-align">Categoria</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <%
-
-                        ArrayList instances = (ArrayList)request.getAttribute("instances");
-
-                        if(instances!=null)
-                        for (int i = 0; i < instances.size(); i++) {
-                            Instances ins = (Instances) instances.get(i);
-                    %>
-                    <div class="col s12 m6 l4">
-                      <div class="card light-blue darken-3">
-                        <div class="card-content white-text">
-                          <span class="card-title"><%= ins.getClassId() %></span>
-                          <p class="center-align"><%= ins.getDateCreated() %></p>
+                <div class="row" style="padding-top: 110px;">                    
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
                         </div>
-                        <div class="card-action" style="font-size: 24px;">
-                          <a href="#">PLAY</a>
-                          <a href='#'><i class="mdi-editor-mode-edit"></i></a>
-                          <a href='#'><i class="mdi-action-delete"></i></a>
-                        </div>
-                      </div>
                     </div>
-                    <% } %>
-                  </div>
-            </div>
-            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-                <a class="btn-floating btn-large red">
-                  <i class="large mdi-navigation-menu"></i>
-                </a>
-                <ul>
-                    <li><a href="./Controlador?model=class&action=read" class="btn-floating deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Users">
-                          <i class="large mdi-social-people"></i>
-                      </a></li>
-                    <li><a href="./Controlador?model=class&action=read" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Classes">
-                            <i class="large mdi-action-class"></i>
-                        </a></li>
-                    <li><a href="./rerports.jsp" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Reports">
-                            <i class="large mdi-editor-insert-chart"></i>
-                        </a></li>
-                    <li><a href="#newClassModal" data-target="newClassModal" class="newClassModal-trigger btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Create Instance">
-                            <i class="large mdi-action-note-add"></i>
-                        </a></li>
-                </ul>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="card blue">
+                            <div class="card-image waves-effect waves-block waves-light activator">
+                                <h1 class="center-align activator yellow-text text-darken-1">100</h1>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"></span>
+                            </div>
+                            <div class="card-reveal blue">
+                              <p class="white-text">Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
                   
