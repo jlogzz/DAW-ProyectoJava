@@ -318,4 +318,34 @@ $(document).ready(function(){
        });
     });
     
+    
+    var points = 0;
+    //GAME!!!
+    $(".activator").click(function(){
+        points = $(this).data("points");
+    });
+    
+    $(".student").click(function(){
+        var vid = $(this).data("id");
+        var vpoints = points;
+        if($(this).data("team")==1){
+            var score = parseInt($("#team1-score").html());
+            score+=points;
+            points=0;
+            $("#team1-score").html(score);
+        }else{
+            var score = parseInt($("#team2-score").html());
+            score+=points;
+            points=0;
+            $("#team2-score").html(score);
+        }
+        
+        $.ajax({
+            method: "POST",
+            url: "./Controlador?model=play&action=points",
+            data: {id:vid, points:vpoints}
+            //dataType: "json"
+        });
+    });
+    
 });

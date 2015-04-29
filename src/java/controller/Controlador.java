@@ -22,6 +22,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import model.Instances;
+import model.InstanceTeams;
 
 /**
  *
@@ -172,15 +173,27 @@ public class Controlador extends HttpServlet {
             if(action.equals("read")){
                 int vid = Integer.parseInt(request.getParameter("instance"));
                 Instances ins = DBhandler.getInstance(vid);
-                System.out.println(ins.getClassId());
-                ArrayList cat = DBhandler.getCategories(ins.getClassId());
-                if(cat!=null)
-                request.setAttribute("categories", cat);
-                request.setAttribute("instance", ins.getId());
-                if(ins.getStep1()==0)
+                
+                if(ins.getStep1()==0){
+                    ArrayList cat = DBhandler.getCategories(ins.getClassId());
+                    if(cat!=null)
+                    request.setAttribute("categories", cat);
+                    request.setAttribute("instance", ins.getId());
+                    
                     url = "/play.jsp";
-                else
+                }
+                else{
+
+                    ArrayList teams = DBhandler.getInstanceTeams(vid);
+                    ArrayList categories = DBhandler.getInstanceCategories(vid);
+
+                    request.setAttribute("instance", ins);
+                    request.setAttribute("teams", teams);
+                    request.setAttribute("categories", categories);
+                    
+                    
                     url = "/game.jsp";
+                }
             }else if(action.equals("step1")){
                 int id = Integer.parseInt(request.getParameter("id"));
                 int cat1, cat2, cat3, cat4;
@@ -285,7 +298,26 @@ public class Controlador extends HttpServlet {
                 DBhandler.setPlayable(1, by, id);
                 
             }else if(action.equals("play")){
+                int iid = Integer.parseInt(request.getParameter("instance"));
+                Instances ins = DBhandler.getInstance(iid);
+                
+                ArrayList teams = DBhandler.getInstanceTeams(iid);
+                ArrayList categories = DBhandler.getInstanceCategories(iid);
+                
+                request.setAttribute("instance", ins);
+                request.setAttribute("teams", teams);
+                request.setAttribute("categories", categories);
+                
                 url = "/game.jsp";
+            }else if(action.equals("points")){
+                int id = Integer.parseInt(request.getParameter("id"));
+                int points = Integer.parseInt(request.getParameter("points"));
+                
+                InstanceTeams student = DBhandler.getInstanceTeam(id);
+                
+                DBhandler.addPoints(id, points, student.getPoints());
+                
+                
             }
             
         }

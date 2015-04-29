@@ -5,6 +5,10 @@
  */
 package model;
 
+import data.DBhandler;
+import model.Clues;
+import model.Categories;
+
 /**
  *
  * @author JLo
@@ -46,6 +50,10 @@ public class InstanceCategories {
     public void setInstanceId(int instanceId) {
         this.instanceId = instanceId;
     }
+    
+    public String getCategory() {
+        return DBhandler.getCategory(this.categoryId).getName();
+    }
 
     public int getCategoryId() {
         return categoryId;
@@ -55,40 +63,40 @@ public class InstanceCategories {
         this.categoryId = categoryId;
     }
 
-    public int getClue100() {
-        return clue100;
+    public Clues getClue100() {
+        return DBhandler.getClue(this.clue100);
     }
 
     public void setClue100(int clue100) {
         this.clue100 = clue100;
     }
 
-    public int getClue200() {
-        return clue200;
+    public Clues getClue200() {
+        return DBhandler.getClue(this.clue200);
     }
 
     public void setClue200(int clue200) {
         this.clue200 = clue200;
     }
 
-    public int getClue300() {
-        return clue300;
+    public Clues getClue300() {
+        return DBhandler.getClue(this.clue300);
     }
 
     public void setClue300(int clue300) {
         this.clue300 = clue300;
     }
 
-    public int getClue400() {
-        return clue400;
+    public Clues getClue400() {
+        return DBhandler.getClue(this.clue400);
     }
 
     public void setClue400(int clue400) {
         this.clue400 = clue400;
     }
 
-    public int getClue500() {
-        return clue500;
+    public Clues getClue500() {
+        return DBhandler.getClue(this.clue500);
     }
 
     public void setClue500(int clue500) {

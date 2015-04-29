@@ -533,6 +533,18 @@ public class DBhandler {
     // InstanceTeams
     //**************************************//
     
+    public static void addPoints(int id, int points, int cpoints){
+        try {            
+            int sum = points+cpoints;
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE equiposinstancia SET points='"+sum+"' WHERE id='"+id+"'");
+
+            statement.close();    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static ArrayList getInstanceTeams(int iid){
         ArrayList list = new ArrayList();
         try {            
@@ -554,6 +566,28 @@ public class DBhandler {
             Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    
+    public static InstanceTeams getInstanceTeam(int iid){
+        InstanceTeams it = null;
+        try {          
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM equiposinstancia WHERE id='"+iid+"'");
+            while (results.next()) {
+                int id = Integer.parseInt(results.getString(1));
+                int instanceId = Integer.parseInt(results.getString(2));
+                int team = Integer.parseInt(results.getString(3));
+                String matricula = results.getString(4);
+                int points = Integer.parseInt(results.getString(5));
+
+                it = new InstanceTeams(id, instanceId, team, matricula, points);
+            }
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return it;
     }
     
     public static void newInstanceTeam(String matricula, int points, int equipo, int iid){
