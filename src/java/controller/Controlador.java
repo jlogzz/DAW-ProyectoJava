@@ -156,12 +156,32 @@ public class Controlador extends HttpServlet {
                 
             }
             
-        }else if(model.equals("report")){
+        }else if(model.equals("reports")){
             //CRUD
             if(action.equals("create")){
                 
             }else if(action.equals("read")){
+                ArrayList students = DBhandler.getAllInstanceTeams();
+                ArrayList ins = DBhandler.getInstances();
                 
+                request.setAttribute("teams", students);
+                request.setAttribute("instances", ins);
+                url = "/reports.jsp";
+            }else if(action.equals("update")){
+                
+            }else if(action.equals("delete")){
+                
+            }
+            
+        }else if(model.equals("users")){
+            //CRUD
+            if(action.equals("create")){
+                
+            }else if(action.equals("read")){
+                ArrayList users = DBhandler.getUsuarios();
+                
+                request.setAttribute("users", users);
+                url = "/users.jsp";
             }else if(action.equals("update")){
                 
             }else if(action.equals("delete")){

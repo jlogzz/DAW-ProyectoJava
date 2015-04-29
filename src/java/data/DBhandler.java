@@ -41,40 +41,6 @@ public class DBhandler {
             e.printStackTrace();
         }
     }
-
-//    public static void storeMessage(Mensaje mensaje) {
-//        try {
-//            Statement statement = connection.createStatement();
-//            String de = mensaje.getDe();
-//            String para = mensaje.getPara();
-//            String contenido = mensaje.getContenido();
-//            String query = "insert into mensajes (de, para, contenido) values ('" + de + "','" + para + "','" + contenido + "')";
-//            statement.executeUpdate(query);
-//            statement.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
-//
-//    public static ArrayList getMessages(String para) {
-//        ArrayList list = new ArrayList();
-//        try {            
-//            Statement statement = connection.createStatement();
-//            ResultSet results = statement.executeQuery("SELECT de, para, contenido FROM mensajes where para='"+para+"'");
-//            while (results.next()) {
-//                String de=results.getString(1);
-//                String contenido=results.getString(3);
-//                Mensaje mensaje = new Mensaje(de, para, contenido);
-//                list.add(mensaje);
-//            }
-//            statement.close();
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return list;
-//    }
     
     public static void newUsuario(String username, String password, int salt){
         try {            
@@ -106,6 +72,27 @@ public class DBhandler {
         }
         
         return null;
+    }
+    
+    public static ArrayList getUsuarios(){
+        ArrayList list= new ArrayList();
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT username, password, salt, id FROM usuario");
+            while (results.next()) {
+                Usuario usuario = new Usuario(results.getString(1));
+                usuario.setPassword(results.getString(2), Integer.parseInt(results.getString(3)));
+                usuario.setId(Integer.parseInt(results.getString(4)));
+                list.add(usuario);
+            }
+            statement.close();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
     
     public static Usuario getUsuario(int id){
@@ -550,6 +537,29 @@ public class DBhandler {
         try {            
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM equiposinstancia WHERE instanciaId='"+iid+"' ORDER BY id DESC");
+            while (results.next()) {
+                int id = Integer.parseInt(results.getString(1));
+                int instanceId = Integer.parseInt(results.getString(2));
+                int team = Integer.parseInt(results.getString(3));
+                String matricula = results.getString(4);
+                int points = Integer.parseInt(results.getString(5));
+
+                InstanceTeams it = new InstanceTeams(id, instanceId, team, matricula, points);
+                list.add(it);
+            }
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBhandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public static ArrayList getAllInstanceTeams(){
+        ArrayList list = new ArrayList();
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM equiposinstancia ORDER BY id DESC");
             while (results.next()) {
                 int id = Integer.parseInt(results.getString(1));
                 int instanceId = Integer.parseInt(results.getString(2));

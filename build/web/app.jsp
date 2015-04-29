@@ -53,13 +53,13 @@
                   <i class="large mdi-navigation-menu"></i>
                 </a>
                 <ul>
-                    <li><a href="./Controlador?model=class&action=read" class="btn-floating deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Users">
+                    <li><a href="./Controlador?model=users&action=read" class="btn-floating deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Users">
                           <i class="large mdi-social-people"></i>
                       </a></li>
                     <li><a href="./Controlador?model=class&action=read" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Classes">
                             <i class="large mdi-action-class"></i>
                         </a></li>
-                    <li><a href="./rerports.jsp" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Reports">
+                    <li><a href="./Controlador?model=reports&action=read" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Reports">
                             <i class="large mdi-editor-insert-chart"></i>
                         </a></li>
                     <li><a href="#newClassModal" data-target="newClassModal" class="newClassModal-trigger btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Create Instance">
